@@ -1,0 +1,10 @@
+# Editor-specific
+.idea/
+.vscode
+
+# Installed libs
+node_modules/
+
+# Misc
+npm-debug.log
+.DS_STORE

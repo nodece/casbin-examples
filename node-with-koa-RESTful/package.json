@@ -1,0 +1,22 @@
+{
+  "name": "koa-rbac",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "casbin": "^1.1.4",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.6.1",
+    "koa-authz": "^1.0.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.16.0",
+    "typeorm-adapter": "^1.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^1.14.3"
+  }
+}
