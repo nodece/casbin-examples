@@ -1,6 +1,6 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const { Enforcer } = require('casbin');
+const casbin = require('casbin');
 const TypeORMAdapter = require('typeorm-adapter').default;
 var bodyParser = require('koa-bodyparser');
 
@@ -77,7 +77,7 @@ async function bootstrap() {
     password: '',
     database: 'casbin',
   });
-  casbinEnforcer = await Enforcer.newEnforcer(
+  casbinEnforcer = await casbin.newEnforcer(
     'keymatch2_model.conf',
     casbinAdapter
   );
