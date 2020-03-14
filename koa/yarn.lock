@@ -68,6 +68,11 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "http://registry.npm.taobao.org/asynckit/download/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
+await-lock@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/await-lock/download/await-lock-2.0.1.tgz#b3f65fdf66e08f7538260f79b46c15bcfc18cadd"
+  integrity sha1-s/Zf32bgj3U4Jg95tGwVvPwYyt0=
+
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "http://registry.npm.taobao.org/aws-sign2/download/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -127,7 +132,7 @@ camelcase@^4.1.0:
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/camelcase/download/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
-casbin@^1.0.7, casbin@^1.1.2, casbin@^1.1.4:
+casbin@^1.0.7, casbin@^1.1.2:
   version "1.1.4"
   resolved "http://registry.npm.taobao.org/casbin/download/casbin-1.1.4.tgz#3941a6136cb2e20a52957c772339c3d6ab263c0b"
   dependencies:
@@ -135,6 +140,16 @@ casbin@^1.0.7, casbin@^1.1.2, casbin@^1.1.4:
     expression-eval "^1.3.0"
     ip "^1.1.5"
     lodash "^4.17.10"
+
+casbin@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npm.taobao.org/casbin/download/casbin-4.1.1.tgz#201cea6dfb142a224794f4b3f46283c14cc6466a"
+  integrity sha1-IBzqbfsUKiJHlPSz9GKDwUzGRmo=
+  dependencies:
+    await-lock "^2.0.1"
+    expression-eval "^2.0.0"
+    ip "^1.1.5"
+    lodash "^4.17.15"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -349,6 +364,13 @@ execa@^0.7.0:
 expression-eval@^1.3.0:
   version "1.4.0"
   resolved "http://registry.npm.taobao.org/expression-eval/download/expression-eval-1.4.0.tgz#3e250c110ff9bb6606d0c8ad0ecb9600e388f76d"
+  dependencies:
+    jsep "^0.3.0"
+
+expression-eval@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.npm.taobao.org/expression-eval/download/expression-eval-2.1.0.tgz#422915caa46140a7c5b5f248650dea8bf8236e62"
+  integrity sha1-QikVyqRhQKfFtfJIZQ3qi/gjbmI=
   dependencies:
     jsep "^0.3.0"
 
@@ -752,6 +774,11 @@ lodash.once@^4.0.0:
 lodash@^4.17.10:
   version "4.17.11"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+
+lodash@^4.17.15:
+  version "4.17.15"
+  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
 
 log-driver@^1.2.7:
   version "1.2.7"
@@ -1168,9 +1195,10 @@ type-is@^1.6.16:
     media-typer "0.3.0"
     mime-types "~2.1.18"
 
-typeorm-adapter@^1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/typeorm-adapter/download/typeorm-adapter-1.0.1.tgz#f2264240dd1143c3a319b6a4fb0676836efd7ed1"
+typeorm-adapter@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/typeorm-adapter/download/typeorm-adapter-1.0.4.tgz#d4f5f295fb5d3489a349f10f7819b5379929d51a"
+  integrity sha1-1PXylftdNImjSfEPeBm1N5kp1Ro=
   dependencies:
     casbin "^1.1.2"
     typeorm "^0.2.7"

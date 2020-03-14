@@ -1,15 +1,12 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const casbin = require('casbin');
+const {newSyncedEnforcer} = require('casbin');
 const TypeORMAdapter = require('typeorm-adapter').default;
-var bodyParser = require('koa-bodyparser');
+const bodyParser = require('koa-bodyparser');
 
 const app = new Koa();
 const router = new Router();
 
-let casbinEnforcer = null;
-
-// test router
 router.get('/books', ctx => {
   ctx.body = [
     {
@@ -28,10 +25,10 @@ router.get('/users', ctx => {
   ];
 });
 
-// Add policy to casbin db
+// Add policy to casbin
 router.post('/policy', async ctx => {
-  const { sub, obj, act } = ctx.request.body;
-  const ok = await casbinEnforcer.addPolicy(sub, obj, act);
+  const {sub, obj, act} = ctx.request.body;
+  const ok = await ctx.enforcer.addPolicy(sub, obj, act);
   ctx.status = ok ? 200 : 500;
 });
 
@@ -42,34 +39,35 @@ router.get('/policy', async ctx => {
 
 // Delete policy
 router.delete('/policy', async ctx => {
-  const { sub, obj, act } = ctx.request.body;
-  const ok = await casbinEnforcer.removePolicy(sub, obj, act);
+  const {sub, obj, act} = ctx.request.body;
+  const ok = await ctx.enforcer.removePolicy(sub, obj, act);
   ctx.status = ok ? 200 : 500;
 });
 
 app.use(bodyParser());
 
 app.use(async (ctx, next) => {
-  const { method, path, header } = ctx.request;
+  const {method, path, header} = ctx.request;
 
   if (path === '/policy') {
     await next();
     return;
   }
 
-  //mock user, you can get user from jwt or session.
-  const user = { role: 'admin-role' };
-  if (!casbinEnforcer.enforce(user.role, path, method)) {
+  // mock user, you can get user from jwt or session.
+  const user = {role: 'admin-role'};
+  if (!await ctx.enforcer.enforce(user.role, path, method)) {
     ctx.status = 403;
     return;
   }
+
   await next();
 });
 
 app.use(router.routes()).use(router.allowedMethods());
 
 async function bootstrap() {
-  const casbinAdapter = await TypeORMAdapter.newAdapter({
+  const adapter = await TypeORMAdapter.newAdapter({
     type: 'mysql',
     host: 'localhost',
     port: 3306,
@@ -77,11 +75,12 @@ async function bootstrap() {
     password: '',
     database: 'casbin',
   });
-  casbinEnforcer = await casbin.newEnforcer(
-    'keymatch2_model.conf',
-    casbinAdapter
+
+  app.context.enforcer = await newSyncedEnforcer(
+      'keymatch2_model.conf',
+      adapter,
   );
-  await casbinEnforcer.loadPolicy();
+
   app.listen(3000);
 }
 
