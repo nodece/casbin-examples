@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "casbin": "^4.1.1",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.6.1",
     "koa-authz": "^1.0.0",
     "koa-bodyparser": "^4.2.1",
